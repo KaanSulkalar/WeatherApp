@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hava durumu uygulaması</title>
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .weather-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+        }
+
+        button {
+            border: none;
+            background-color: #009688;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        button img {
+            vertical-align: middle;
+        }
+
+        .weather {
+            text-align: center;
+        }
+
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .temp {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .city {
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .col {
+            text-align: center;
+        }
+
+        .col img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .humidity,
+        .wind {
+            font-size: 18px;
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .gmt-watch {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .gmt-time {
+            font-size: 18px;
+            margin-top: 5px;
+            color: #555;
+        }
+
+    </style>
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const apiKey = "1c32e6c1fc13c6eb21f80099e3387c58";
+            const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+
+            const searchBox = document.querySelector(".search input");
+            const searchBtn = document.querySelector(".search button");
+            const weatherIcon = document.querySelector(".weather-icon");
+            const gmtTimeElement = document.querySelector(".gmt-time");
+            const dateElement = document.querySelector(".date");
+
+            async function fetchWeather(city) {
+                const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+                const data = await response.json();
+                return data;
+            }
+
+            async function updateWeather(city) {
+                const weatherData = await fetchWeather(city);
+
+                document.querySelector(".city").innerHTML = weatherData.name;
+                document.querySelector(".temp").innerHTML = Math.round(weatherData.main.temp) + "°c";
+                document.querySelector(".humidity").innerHTML = weatherData.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = weatherData.wind.speed + " km/h";
+
+                if (weatherData.weather[0].main === "Clouds") {
+                    weatherIcon.src = "images/cloudy.png";
+                } else if (weatherData.weather[0].main === "Clear") {
+                    weatherIcon.src = "images/sun.png";
+                } else if (weatherData.weather[0].main === "Rain") {
+                    weatherIcon.src = "images/rain.png";
+                } else if (weatherData.weather[0].main === "Drizzle") {
+                    weatherIcon.src = "images/drizzle.png";
+                } else if (weatherData.weather[0].main === "Mist") {
+                    weatherIcon.src = "images/mist.png";
+                }
+
+            }
+
+            searchBox.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    updateWeather(searchBox.value);
+                }
+            });
+
+            searchBtn.addEventListener("click", () => {
+                document.querySelector(".weather").style.display = "block";
+                updateWeather(searchBox.value);
+            });
+
+            function updateGMTTime() {
+                const gmtTime = new Date().toUTCString();
+                gmtTimeElement.textContent = gmtTime;
+            }
+
+            setInterval(updateGMTTime, 1000);
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="Weather%20app2.css">
+    <script src="Weather%20app2.js"></script>
+</head>
+
+
+<body>
+
+<h1><em>Kaan Sulkalar Weather App</em></h1>
+
+<div class="weather-container">
+    <div class="search">
+
+        <input type="text" id="cityInput" placeholder="Enter city name"
+               spellcheck="false">
+        <button><img src="images/search.png"></button>
+
+    </div>
+    <div class="weather">
+        <img src="images/sun.png" class="weather-icon">
+        <h1 class="temp">35°c</h1>
+        <h2 class="city">Ankara</h2>
+
+        <div class="details">
+            <div class="col">
+                <img src="images/humidity.png">
+                <div>
+                    <p class="humidity">%25</p>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="col">
+                <img src="images/wind.png">
+                <div>
+                    <p class="wind">7 km/h</p>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="gmt-watch">
+    <h2>GMT Time</h2>
+    <p class="gmt-time">Loading...</p>
+</div>
+
+
+
+
+
+
+</body>
+</html>

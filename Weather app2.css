@@ -1,0 +1,153 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.weather-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+button {
+    border: none;
+    background-color: #009688;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+button img {
+    vertical-align: middle;
+}
+
+.weather {
+    text-align: center;
+}
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.temp {
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.city {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.col {
+    text-align: center;
+}
+
+.col img {
+    width: 40px;
+    height: 40px;
+}
+
+.humidity, .wind {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #555;
+}
+
+.gmt-watch {
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.gmt-time {
+    font-size: 18px;
+    margin-top: 5px;
+    color: #555;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(to left bottom, lightgreen, lightblue);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    color: darkcyan;
+}
+
+.container {
+    background: rgba(255, 255, 255, .3);
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    width: 85%;
+    max-width: 450px;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heading {
+    font-size: 32px;
+
+}
+
+.temp-container {
+    width: 100%;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.input {
+    width: 220px;
+    font-family: monospace;
+    padding: 5px;
+    float: right;
+    outline: none;
+    background: rgba(255, 255, 255, .3);
+    border-color: rgba(255, 255, 255, .5);
+    color: darkgreen;
+    font-size: 20px;
+}
+
+.input::placeholder {
+    color: darkgray;
+}
