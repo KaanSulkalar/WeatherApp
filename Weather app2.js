@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiKey = "1c32e6c1fc13c6eb21f80099e3387c58"; // Replace with your actual API key
+    const apiKey = "1c32e6c1fc13c6eb21f80099e3387c58"; 
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
 
     const searchBox = document.querySelector(".search input");
     const searchBtn = document.querySelector(".search button");
     const weatherIcon = document.querySelector(".weather-icon");
     const gmtTimeElement = document.querySelector(".gmt-time");
-    const celsiusEl = document.getElementById("celsius");
-    const fahrenheitEl = document.getElementById("fahrenheit");
+
 
     async function fetchWeather(city) {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
@@ -36,11 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
             weatherIcon.src = "images/mist.png";
         }
 
-        // Calculate and display Fahrenheit temperature
-        const fahrenheitTemperature = (celsiusTemperature * 1.8 + 32).toFixed(2);
-        if (fahrenheitEl) {
-            fahrenheitEl.value = fahrenheitTemperature;
-        }
+      
+
     }
 
     searchBtn.addEventListener("click", () => {
